@@ -20,7 +20,9 @@ function App() {
       .then((res) => res.json())
       .then((data) => {
         if (data.insertedId) {
-          toast.success("Successfully created!");
+          toast.success("Successfully created!", {
+            duration: 1000,
+          });
           form.reset();
         }
       });
@@ -30,7 +32,8 @@ function App() {
     <div>
       <Toaster />
       <h1>Simple CRUD Client</h1>
-      <Link to="/user">users</Link>
+      <Link to="/user">Users</Link>
+
       <div className="form-style-5">
         <form onSubmit={handlerSubmit}>
           <legend>

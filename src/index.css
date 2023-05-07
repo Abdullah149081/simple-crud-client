@@ -14,6 +14,7 @@ a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
+  margin-left: 10px;
 }
 a:hover {
   color: #535bf2;
@@ -146,4 +147,12 @@ button:focus-visible {
 .form-style-5 input[type="submit"]:hover,
 .form-style-5 input[type="button"]:hover {
   background: #109177;
+}
+
+.card-body {
+  border: 1px solid #d2d9dd;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }

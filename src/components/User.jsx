@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-underscore-dangle */
 import React, { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
@@ -25,16 +26,23 @@ const User = () => {
   return (
     <div>
       <Link to="/">Home</Link>
+
       <h1>Users Found : {users.length}</h1>
       <Toaster />
-      <div>
+      <div className="card">
         {users.map((user) => (
-          <p key={user._id}>
-            <span>Name:</span> {user.name} : <span>Email:</span> {user.email}
-            <button onClick={() => handlerDelete(user._id)} type="button">
-              x
-            </button>
-          </p>
+          <div className="card-body" key={user._id}>
+            <p>
+              <span>Name:</span> {user.name} : <span>Email:</span> {user.email}
+              <button onClick={() => handlerDelete(user._id)} type="button">
+                x
+              </button>
+            </p>
+
+            <Link to={`/update/${user._id}`}>
+              <button type="button">User Details</button>
+            </Link>
+          </div>
         ))}
       </div>
     </div>
