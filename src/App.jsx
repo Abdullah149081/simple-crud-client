@@ -1,3 +1,5 @@
+import toast, { Toaster } from "react-hot-toast";
+import { Link } from "react-router-dom";
 import "./App.css";
 
 function App() {
@@ -6,7 +8,7 @@ function App() {
     const form = e.target;
     const name = form.name.value;
     const email = form.email.value;
-    const user = { name, email };
+    const user = { name, email }; // important
 
     fetch("http://localhost:5000/users", {
       method: "POST",
@@ -16,20 +18,27 @@ function App() {
       body: JSON.stringify(user),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
-    form.reset();
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          toast.success("Successfully created!");
+          form.reset();
+        }
+      });
   };
 
   return (
     <div>
+      <Toaster />
       <h1>Simple CRUD Client</h1>
+      <Link to="/user">user</Link>
       <div className="form-style-5">
         <form onSubmit={handlerSubmit}>
           <legend>
             <span className="number">1</span> Candidate Info
           </legend>
-          <input type="text" name="name" placeholder="Your Name *" />
-          <input type="email" name="email" placeholder="Your Email *" />
+          <input type="text" name="name" placeholder="Your Name *" required />
+          <input type="email" name="email" placeholder="Your Email *" required />
 
           <input type="submit" value="Add User" />
         </form>
