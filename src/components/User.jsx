@@ -4,18 +4,21 @@ import toast, { Toaster } from "react-hot-toast";
 import { Link, useLoaderData } from "react-router-dom";
 
 const User = () => {
-  const users = useLoaderData();
+  const loadUsers = useLoaderData();
+  const [users, setUsers] = useState(loadUsers);
 
   const handlerDelete = (id) => {
-    // const userRemove = users.filter((userR) => userR._id !== id);
-
     fetch(`http://localhost:5000/users/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount > 0) {
-          toast.error("Successfully Delete!");
+          toast.error("Successfully Delete!", {
+            duration: 1000,
+          });
+          const userRemove = users.filter((user) => user._id !== id);
+          setUsers(userRemove);
         }
       });
   };
