@@ -19,7 +19,6 @@ function App() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.insertedId) {
           toast.success("Successfully created!");
           form.reset();
@@ -31,7 +30,7 @@ function App() {
     <div>
       <Toaster />
       <h1>Simple CRUD Client</h1>
-      <Link to="/user">user</Link>
+      <Link to="/user">users</Link>
       <div className="form-style-5">
         <form onSubmit={handlerSubmit}>
           <legend>
